@@ -114,19 +114,17 @@
   <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
 
   <!-- カメラ設定 -->
- <a-entity id="camera" camera position="0 1.6 0"></a-entity>
+<a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
 
 </a-scene>
 
   <!-- JavaScript -->
 <script>
-  // 折りたたみメニューの表示切り替え
   function toggleMenu() {
     const menu = document.getElementById('zone-menu');
     menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
   }
 
-  // 区画切り替え処理
   function switchScene(zone) {
     const sky = document.querySelector('#sky');
     const camera = document.querySelector('#camera');
@@ -158,33 +156,16 @@
         break;
     }
 
-    // メニューを自動で閉じる（スマホ向け）
     document.getElementById('zone-menu').style.display = 'none';
   }
 
-  // カメラの操作設定（端末ごとに分岐）
   window.addEventListener('DOMContentLoaded', () => {
     const camera = document.getElementById('camera');
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    // スワイプ操作を有効化し、傾き操作とキーボード操作を無効化
     camera.setAttribute('wasd-controls', 'enabled: false');
-    camera.setAttribute('look-controls', {
-      touchEnabled: true,
-      magicWindowTrackingEnabled: false,
-      pointerLockEnabled: false // PCでもfalseにすることでEsc不要
-    });
+    camera.setAttribute('look-controls', 'touchEnabled: true; magicWindowTrackingEnabled: false; pointerLockEnabled: false');
   });
 </script>
+
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
