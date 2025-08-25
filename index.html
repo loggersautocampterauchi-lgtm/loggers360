@@ -4,16 +4,44 @@
     <meta charset="utf-8">
     <title>Loggers 360ビュー</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <style>
+      .buttons {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 999;
+      }
+      button {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body>
+    <div class="buttons">
+      <button onclick="changeSky('a.jpg')">A区画</button>
+      <button onclick="changeSky('b.jpg')">B区画</button>
+      <button onclick="changeSky('c.jpg')">C区画</button>
+    </div>
+
     <a-scene>
       <a-assets>
         <img id="skyTexture" src="a.jpg">
       </a-assets>
-      <a-sky src="#skyTexture" rotation="0 -130 0"></a-sky>
+      <a-sky id="sky" src="#skyTexture" rotation="0 -130 0"></a-sky>
     </a-scene>
+
+    <script>
+      function changeSky(imageName) {
+        const assets = document.querySelector('a-assets');
+        const skyTexture = document.getElementById('skyTexture');
+        skyTexture.setAttribute('src', imageName);
+      }
+    </script>
   </body>
 </html>
+
 
 
 
