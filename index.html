@@ -25,41 +25,29 @@
       <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
     </div>
 
-  <a-scene>
-  <a-text value="テスト表示"
-          position="0 2 -3"
-          color="#FFDD00"
-          scale="2 2 2">
-  </a-text>
-</a-scene>
+    <a-scene>
+      <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
 
-
+      <a-text id="infoText"
+              value="A区画：木陰が多く、静かな雰囲気"
+              position="0 2 -3"
+              align="center"
+              color="#FFDD00"
+              scale="2 2 2"
+              opacity="1">
+      </a-text>
+    </a-scene>
 
     <script>
-function changeSky(imageName, description) {
-  const sky = document.getElementById('sky');
-  sky.setAttribute('src', imageName);
+      function changeSky(imageName, description) {
+        const sky = document.getElementById('sky');
+        sky.setAttribute('src', imageName);
 
-  const infoText = document.getElementById('infoText');
-  infoText.setAttribute('value', description);
-  infoText.setAttribute('opacity', '1'); // ← ここで確実に表示
-}
-
-
-
-        // アニメーションを削除して再登録
-        infoText.removeAttribute('animation__fadein');
-        infoText.setAttribute('opacity', '0');
-
-        // 少し待ってからアニメーションを再設定
-        setTimeout(() => {
-          infoText.setAttribute('animation__fadein', 'property: opacity; to: 1; dur: 800; easing: ease-out');
-        }, 50);
+        const infoText = document.getElementById('infoText');
+        infoText.setAttribute('value', description);
+        infoText.setAttribute('opacity', '1'); // 常に表示
       }
     </script>
   </body>
 </html>
-
-
-
 
