@@ -49,16 +49,20 @@
     const infoText = document.getElementById('infoText');
     infoText.setAttribute('value', description);
 
-    // アニメーションを再起動
-    infoText.removeAttribute('animation__fadein'); // ← ここが重要！
+    // アニメーションを削除して再登録
+    infoText.removeAttribute('animation__fadein');
     infoText.setAttribute('opacity', '0');
+
     setTimeout(() => {
       infoText.setAttribute('animation__fadein', 'property: opacity; to: 1; dur: 800; easing: ease-out');
     }, 50);
   }
 </script>
+
+
   </body>
 </html>
+
 
 
 
