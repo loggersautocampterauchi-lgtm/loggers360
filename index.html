@@ -1,82 +1,110 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>Loggers 360ビュー</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        font-family: sans-serif;
-      }
-      .buttons {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-      }
-      button {
-        margin: 5px;
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 6px;
-      }
-      button:hover {
-        background-color: #45a049;
-      }
-      #description {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        padding: 12px 20px;
-        font-size: 18px;
-        border-radius: 8px;
-        z-index: 10;
-        max-width: 80%;
-        text-align: center;
-        line-height: 1.5;
-      }
-      #viewer {
-        width: 100vw;
-        height: 100vh;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- ボタン -->
-    <div class="buttons">
-      <button onclick="changeSky('a.jpg', 'A区画：木陰が多く、静かな雰囲気')">A区画</button>
-      <button onclick="changeSky('b.jpg', 'B区画：虫が少なく、ファミリー向け')">B区画</button>
-      <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <title>ロガーズオートキャンプ那須高原 360°ビュー</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      background-color: #f0f4f1;
+    }
 
-    <!-- 説明テキスト -->
-    <div id="description">A区画：木陰が多く、静かな雰囲気</div>
+    .zone-buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-    <!-- A-Frame埋め込みビュー -->
-    <div id="viewer">
-      <a-scene embedded>
-        <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
-      </a-scene>
-    </div>
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
 
-    <!-- JavaScript -->
-    <script>
-      function changeSky(imageName, description) {
-        const sky = document.getElementById('sky');
-        const desc = document.getElementById('description');
-        sky.setAttribute('src', imageName);
-        desc.textContent = description;
+    .zone-a {
+      background-color: #2E7D32;
+    }
+    .zone-a:hover {
+      background-color: #388E3C;
+    }
+
+    .zone-b {
+      background-color: #8D6E63;
+    }
+    .zone-b:hover {
+      background-color: #A1887F;
+      color: #FFEB3B;
+    }
+
+    .zone-c {
+      background-color: #283593;
+    }
+    .zone-c:hover {
+      background-color: #3F51B5;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ボタン群 -->
+  <div class="zone-buttons">
+    <button class="zone-a" onclick="switchScene('a')">🌳 A区画（木陰）</button>
+    <button class="zone-b" onclick="switchScene('b')">🦟 B区画（虫除け）</button>
+    <button class="zone-c" onclick="switchScene('c')">🌟 C区画（星空）</button>
+  </div>
+
+  <!-- A-Frameシーン -->
+  <a-scene>
+    <!-- アセット定義：360度画像 -->
+    <a-assets>
+      <img id="sky-a" src="images/a.jpg">
+      <img id="sky-b" src="images/b.jpg">
+      <img id="sky-c" src="images/c.jpg">
+    </a-assets>
+
+    <!-- 背景スカイ -->
+    <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
+
+    <!-- カメラ -->
+    <a-entity id="camera" camera look-controls position="0 1.6 0"></a-entity>
+  </a-scene>
+
+  <!-- JavaScriptで切り替え -->
+  <script>
+    function switchScene(zone) {
+      const sky = document.querySelector('#sky');
+      const camera = document.querySelector('#camera');
+
+      switch (zone) {
+        case 'a':
+          sky.setAttribute('src', '#sky-a');
+          camera.setAttribute('position', '0 1.6 0');
+          break;
+        case 'b':
+          sky.setAttribute('src', '#sky-b');
+          camera.setAttribute('position', '2 1.6 -1');
+          break;
+        case 'c':
+          sky.setAttribute('src', '#sky-c');
+          camera.setAttribute('position', '-1 1.6 2');
+          break;
       }
-    </script>
-  </body>
+    }
+  </script>
+
+</body>
 </html>
 
