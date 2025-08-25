@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <title>Loggers 360ビュー</title>
@@ -8,18 +8,26 @@
       body {
         margin: 0;
         overflow: hidden;
+        font-family: sans-serif;
       }
       .buttons {
         position: absolute;
         top: 20px;
         left: 20px;
-        z-index: 999;
+        z-index: 10;
       }
       button {
         margin: 5px;
         padding: 10px 15px;
         font-size: 16px;
         cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 6px;
+      }
+      button:hover {
+        background-color: #45a049;
       }
       #description {
         position: absolute;
@@ -31,10 +39,14 @@
         padding: 12px 20px;
         font-size: 18px;
         border-radius: 8px;
-        z-index: 999;
+        z-index: 10;
         max-width: 80%;
         text-align: center;
         line-height: 1.5;
+      }
+      #viewer {
+        width: 100vw;
+        height: 100vh;
       }
     </style>
   </head>
@@ -46,19 +58,23 @@
       <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
     </div>
 
-    <!-- 日本語テキスト表示 -->
+    <!-- 説明テキスト -->
     <div id="description">A区画：木陰が多く、静かな雰囲気</div>
 
-    <!-- A-Frame 360ビュー -->
-    <a-scene>
-      <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
-    </a-scene>
+    <!-- A-Frame埋め込みビュー -->
+    <div id="viewer">
+      <a-scene embedded>
+        <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
+      </a-scene>
+    </div>
 
     <!-- JavaScript -->
     <script>
       function changeSky(imageName, description) {
-        document.getElementById('sky').setAttribute('src', imageName);
-        document.getElementById('description').textContent = description;
+        const sky = document.getElementById('sky');
+        const desc = document.getElementById('description');
+        sky.setAttribute('src', imageName);
+        desc.textContent = description;
       }
     </script>
   </body>
