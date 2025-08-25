@@ -25,21 +25,15 @@
       <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
     </div>
 
-    <a-scene>
-      <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
-
-      <!-- 説明テキスト（常にカメラ方向を向き、ふわっと表示） -->
- <a-text id="infoText"
-        value="A区画：木陰が多く、静かな雰囲気"
-        position="0 2 -3"
-        align="center"
-        color="#FFDD00"
-        scale="2 2 2"
-        opacity="1">
-</a-text>
+  <a-scene>
+  <a-text value="テスト表示"
+          position="0 2 -3"
+          color="#FFDD00"
+          scale="2 2 2">
+  </a-text>
+</a-scene>
 
 
-    </a-scene>
 
     <script>
 function changeSky(imageName, description) {
@@ -65,6 +59,7 @@ function changeSky(imageName, description) {
     </script>
   </body>
 </html>
+
 
 
 
