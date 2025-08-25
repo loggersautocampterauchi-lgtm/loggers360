@@ -1,21 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>360度画像テスト</title>
+    <meta charset="utf-8">
+    <title>Loggers 360ビュー</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <style>body { margin: 0; }</style>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      .buttons {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 999;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #description {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 12px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        z-index: 999;
+        max-width: 80%;
+        text-align: center;
+        line-height: 1.5;
+      }
+    </style>
   </head>
   <body>
-    <a-scene>
-      <!-- 360度背景画像 -->
-      <a-sky src="a.jpg" rotation="0 -90 0"></a-sky>
+    <!-- ボタン -->
+    <div class="buttons">
+      <button onclick="changeSky('a.jpg', 'A区画：木陰が多く、静かな雰囲気')">A区画</button>
+      <button onclick="changeSky('b.jpg', 'B区画：虫が少なく、ファミリー向け')">B区画</button>
+      <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
+    </div>
 
-      <!-- カメラとカーソル -->
-      <a-entity camera look-controls>
-        <a-cursor></a-cursor>
-      </a-entity>
+    <!-- 日本語テキスト表示 -->
+    <div id="description">A区画：木陰が多く、静かな雰囲気</div>
+
+    <!-- A-Frame 360ビュー -->
+    <a-scene>
+      <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
     </a-scene>
+
+    <!-- JavaScript -->
+    <script>
+      function changeSky(imageName, description) {
+        document.getElementById('sky').setAttribute('src', imageName);
+        document.getElementById('description').textContent = description;
+      }
+    </script>
   </body>
 </html>
 
