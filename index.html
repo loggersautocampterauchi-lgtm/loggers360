@@ -32,6 +32,20 @@
       <a-sky id="sky" src="#skyTexture" rotation="0 -130 0"></a-sky>
     </a-scene>
 
+    <b-scene>
+      <b-assets>
+        <img id="skyTexture" src="b.jpg">
+      </b-assets>
+      <b-sky id="sky" src="#skyTexture" rotation="0 -130 0"></b-sky>
+    </b-scene>
+
+    <c-scene>
+      <c-assets>
+        <img id="skyTexture" src="c.jpg">
+      </c-assets>
+      <c-sky id="sky" src="#skyTexture" rotation="0 -130 0"></c-sky>
+    </c-scene>
+
     <script>
       function changeSky(imageName) {
         const assets = document.querySelector('a-assets');
@@ -41,6 +55,7 @@
     </script>
   </body>
 </html>
+
 
 
 
