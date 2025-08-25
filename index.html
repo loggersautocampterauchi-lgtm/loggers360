@@ -42,12 +42,16 @@
     </a-scene>
 
     <script>
-      function changeSky(imageName, description) {
-        const sky = document.getElementById('sky');
-        sky.setAttribute('src', imageName);
+function changeSky(imageName, description) {
+  const sky = document.getElementById('sky');
+  sky.setAttribute('src', imageName);
 
-        const infoText = document.getElementById('infoText');
-        infoText.setAttribute('value', description);
+  const infoText = document.getElementById('infoText');
+  infoText.setAttribute('value', description);
+  infoText.setAttribute('opacity', '1'); // ← ここで確実に表示
+}
+
+
 
         // アニメーションを削除して再登録
         infoText.removeAttribute('animation__fadein');
@@ -61,5 +65,6 @@
     </script>
   </body>
 </html>
+
 
 
