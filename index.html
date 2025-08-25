@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>ロガーズオートキャンプ那須高原 360°ビュー</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <style>
     body {
@@ -11,76 +12,116 @@
       background-color: #f0f4f1;
     }
 
-    .zone-buttons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    /* ハンバーガーメニュー */
+    #menu-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      z-index: 20;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* 折りたたみメニュー本体 */
+    #zone-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255,255,255,0.95);
+      padding: 10px;
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      z-index: 15;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
     }
 
     button {
-      padding: 12px 20px;
-      font-size: 16px;
+      padding: 10px 14px;
+      font-size: 14px;
       font-weight: bold;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       color: #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .zone-a { background-color: #2E7D32; }
-    .zone-a:hover { background-color: #388E3C; }
-
     .zone-b { background-color: #8D6E63; }
-    .zone-b:hover { background-color: #A1887F; color: #FFEB3B; }
-
     .zone-c { background-color: #283593; }
-    .zone-c:hover { background-color: #3F51B5; transform: scale(1.05); }
-
     .zone-d { background-color: #BF360C; }
-    .zone-d:hover { background-color: #D84315; }
-
     .zone-e { background-color: #EF6C00; }
-    .zone-e:hover { background-color: #F57C00; }
-
     .zone-f { background-color: #00796B; }
-    .zone-f:hover { background-color: #009688; }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @media screen and (min-width: 768px) {
+      #zone-menu {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        width: auto;
+        background-color: rgba(255,255,255,0.9);
+        flex-direction: column;
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      #menu-toggle {
+        top: 20px;
+        right: 20px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ボタン群 -->
-  <div class="zone-buttons">
-    <button class="zone-a" onclick="switchScene('a')">🌳 A区画（木陰）</button>
-    <button class="zone-b" onclick="switchScene('b')">🦟 B区画（虫除け）</button>
-    <button class="zone-c" onclick="switchScene('c')">🌟 C区画（星空）</button>
-    <button class="zone-d" onclick="switchScene('d')">🔥 D区画（焚き火）</button>
-    <button class="zone-e" onclick="switchScene('e')">🍁 E区画（紅葉）</button>
-    <button class="zone-f" onclick="switchScene('f')">🏕️ F区画（展望）</button>
+  <!-- ハンバーガーメニュー -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰ 区画選択</div>
+
+  <!-- 折りたたみメニュー -->
+  <div id="zone-menu">
+    <button class="zone-a" onclick="switchScene('a')">🌳 A区画</button>
+    <button class="zone-b" onclick="switchScene('b')">🦟 B区画</button>
+    <button class="zone-c" onclick="switchScene('c')">🌟 C区画</button>
+    <button class="zone-d" onclick="switchScene('d')">🔥 D区画</button>
+    <button class="zone-e" onclick="switchScene('e')">🍁 E区画</button>
+    <button class="zone-f" onclick="switchScene('f')">🏕️ F区画</button>
   </div>
 
   <!-- A-Frameシーン -->
   <a-scene>
     <a-assets>
-      <img id="sky-a" src="images/a.jpg">
-      <img id="sky-b" src="images/b.jpg">
-      <img id="sky-c" src="images/a.jpg">
-      <img id="sky-d" src="images/b.jpg">
-      <img id="sky-e" src="images/a.jpg">
-      <img id="sky-f" src="images/b.jpg">
+      <img id="sky-a" src="images/shade.jpg">
+      <img id="sky-b" src="images/insect.jpg">
+      <img id="sky-c" src="images/star.jpg">
+      <img id="sky-d" src="images/fire.jpg">
+      <img id="sky-e" src="images/autumn.jpg">
+      <img id="sky-f" src="images/view.jpg">
     </a-assets>
 
     <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
     <a-entity id="camera" camera look-controls position="0 1.6 0"></a-entity>
   </a-scene>
 
-  <!-- JavaScript切り替え -->
+  <!-- JavaScript -->
   <script>
+    function toggleMenu() {
+      const menu = document.getElementById('zone-menu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+
     function switchScene(zone) {
       const sky = document.querySelector('#sky');
       const camera = document.querySelector('#camera');
@@ -111,10 +152,12 @@
           camera.setAttribute('position', '0 2.0 3');
           break;
       }
+
+      // 自動でメニューを閉じる（スマホ向け）
+      document.getElementById('zone-menu').style.display = 'none';
     }
   </script>
 
 </body>
 </html>
-
 
