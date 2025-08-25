@@ -37,14 +37,17 @@
     </a-scene>
 
     <script>
-      function changeSky(imageName, description) {
-        const sky = document.getElementById('sky');
-        sky.setAttribute('src', imageName);
+function changeSky(imageName, description) {
+  const sky = document.getElementById('sky');
+  sky.setAttribute('src', imageName);
 
-        const infoText = document.getElementById('infoText');
-        infoText.setAttribute('text', `value: ${description}; align: center; color: #FFDD00; width: 6;`);
-      }
+  const infoText = document.getElementById('infoText');
+  infoText.setAttribute('text', `value: ${description}; align: center; color: #FFDD00; width: 6;`);
+}
+
+
     </script>
   </body>
 </html>
+
 
