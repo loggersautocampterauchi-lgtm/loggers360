@@ -114,7 +114,13 @@
   <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
 
   <!-- 統合されたカメラ設定 -->
-  <a-entity id="camera" camera look-controls="touchEnabled: true; magicWindowTrackingEnabled: false;" position="0 1.6 0"></a-entity>
+  <a-entity id="camera"
+          camera
+          look-controls="touchEnabled: true; magicWindowTrackingEnabled: false; pointerLockEnabled: true"
+          position="0 1.6 0">
+</a-entity>
+
+
 </a-scene>
 
   <!-- JavaScript -->
@@ -162,6 +168,7 @@
 
 </body>
 </html>
+
 
 
 
