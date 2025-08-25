@@ -53,6 +53,7 @@
     infoText.removeAttribute('animation__fadein');
     infoText.setAttribute('opacity', '0');
 
+    // 少し待ってからアニメーションを再設定
     setTimeout(() => {
       infoText.setAttribute('animation__fadein', 'property: opacity; to: 1; dur: 800; easing: ease-out');
     }, 50);
@@ -62,6 +63,7 @@
 
   </body>
 </html>
+
 
 
 
