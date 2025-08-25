@@ -61,9 +61,10 @@
 
   <!-- ボタン群 -->
   <div class="zone-buttons">
-    <button class="zone-a" onclick="switchScene('a')">🌳 A区画（木陰）</button>
-    <button class="zone-b" onclick="switchScene('b')">🦟 B区画（虫除け）</button>
-    <button class="zone-c" onclick="switchScene('c')">🌟 C区画（星空）</button>
+    <button class="zone-a" onclick="switchScene('a')">🌳 中央区画</button>
+    <button class="zone-b" onclick="switchScene('b')">🌳 キャンプポールつき区画</button>
+    <button class="zone-c" onclick="switchScene('c')">🌳 木陰の区画</button>
+    <button class="zone-d" onclick="switchScene('c')">🌳 木陰の区画</button>
   </div>
 
   <!-- A-Frameシーン -->
@@ -73,6 +74,7 @@
       <img id="sky-a" src="images/a.jpg">
       <img id="sky-b" src="images/b.jpg">
       <img id="sky-c" src="images/c.jpg">
+      <img id="sky-d" src="images/b.jpg">
     </a-assets>
 
     <!-- 背景スカイ -->
@@ -101,10 +103,15 @@
           sky.setAttribute('src', '#sky-c');
           camera.setAttribute('position', '-1 1.6 2');
           break;
+        case 'd':
+          sky.setAttribute('src', '#sky-d');
+          camera.setAttribute('position', '-1 1.6 2');
+          break;
       }
     }
   </script>
 
 </body>
 </html>
+
 
