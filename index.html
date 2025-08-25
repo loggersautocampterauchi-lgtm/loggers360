@@ -32,27 +32,25 @@
   <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
 
   <!-- 説明テキスト（ふわっと表示） -->
-  <a-text id="infoText"
-          value="A区画：木陰が多く、静かな雰囲気"
-          position="0 1.5 -2"
-          align="center"
-          color="#FFFFFF"
-          opacity="0"
-          animation__fadein="property: opacity; to: 1; dur: 800; easing: ease-out">
-  </a-text>
+<a-text id="infoText"
+        value="A区画：木陰が多く、静かな雰囲気"
+        position="0 1.5 -2"
+        align="center"
+        color="#FFFFFF"
+        opacity="1">
+</a-text>
 </a-scene>
 
 <script>
   function changeSky(imageName, description) {
-    // 背景画像を切り替え
     const sky = document.getElementById('sky');
     sky.setAttribute('src', imageName);
 
-    // 説明テキストを更新
     const infoText = document.getElementById('infoText');
     infoText.setAttribute('value', description);
 
-    // アニメーションを再起動（opacityを0→1）
+    // アニメーションを再起動
+    infoText.removeAttribute('animation__fadein'); // ← ここが重要！
     infoText.setAttribute('opacity', '0');
     setTimeout(() => {
       infoText.setAttribute('animation__fadein', 'property: opacity; to: 1; dur: 800; easing: ease-out');
@@ -61,6 +59,7 @@
 </script>
   </body>
 </html>
+
 
 
 
