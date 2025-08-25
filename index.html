@@ -114,8 +114,13 @@
   <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
 
   <!-- カメラ設定 -->
-<a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
-
+<a-entity id="camera"
+          camera
+          look-controls="touchEnabled: true; magicWindowTrackingEnabled: false; pointerLockEnabled: false"
+          wasd-controls="enabled: false"
+          position="0 1.6 0">
+</a-entity>
+  
 </a-scene>
 
   <!-- JavaScript -->
@@ -162,10 +167,9 @@
   window.addEventListener('DOMContentLoaded', () => {
     const camera = document.getElementById('camera');
     camera.setAttribute('wasd-controls', 'enabled: false');
-    camera.setAttribute('look-controls', 'touchEnabled: true; magicWindowTrackingEnabled: false; pointerLockEnabled: false');
-  });
 </script>
 
 
 </body>
 </html>
+
