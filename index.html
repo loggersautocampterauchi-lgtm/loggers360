@@ -39,26 +39,39 @@
     </style>
   </head>
   <body>
-    <!-- ボタン -->
     <div class="buttons">
-      <button onclick="changeSky('a.jpg', 'A区画：木陰が多く、静かな雰囲気')">A区画</button>
-      <button onclick="changeSky('b.jpg', 'B区画：虫が少なく、ファミリー向け')">B区画</button>
-      <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい')">C区画</button>
+      <button onclick="changeSky('a.jpg', 'A区画：木陰が多く、静かな雰囲気', 'shade.png')">A区画</button>
+      <button onclick="changeSky('b.jpg', 'B区画：虫が少なく、ファミリー向け', 'mosquito.png')">B区画</button>
+      <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい', 'stars.png')">C区画</button>
     </div>
 
-    <!-- 日本語テキスト表示 -->
     <div id="description">A区画：木陰が多く、静かな雰囲気</div>
 
-    <!-- A-Frame 360ビュー -->
     <a-scene>
       <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
+
+      <!-- アイコン（アニメーション付き） -->
+      <a-image id="icon"
+               src="shade.png"
+               position="0 2 -3"
+               scale="1.5 1.5 1.5"
+               visible="true"
+               animation__fadein="property: opacity; from: 0; to: 1; dur: 800; easing: ease-out"
+               animation__float="property: position; dir: alternate; dur: 2000; easing: ease-in-out; loop: true; to: 0 2.2 -3">
+      </a-image>
     </a-scene>
 
-    <!-- JavaScript -->
     <script>
-      function changeSky(imageName, description) {
+      function changeSky(imageName, description, iconName) {
         document.getElementById('sky').setAttribute('src', imageName);
         document.getElementById('description').textContent = description;
+
+        const icon = document.getElementById('icon');
+        icon.setAttribute('src', iconName);
+        icon.setAttribute('opacity', '0'); // リセット
+        setTimeout(() => {
+          icon.setAttribute('animation__fadein', 'property: opacity; from: 0; to: 1; dur: 800; easing: ease-out');
+        }, 50);
       }
     </script>
   </body>
