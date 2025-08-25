@@ -28,19 +28,12 @@
     <a-scene>
       <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
 
-<a-text id="infoText"
-        value="A区画：木陰が多く、静かな雰囲気"
-        position="0 2 -3"
-        align="center"
-        color="#FFDD00"
-        scale="2 2 2"
-        width="10"
-        wrap-count="20"
-        opacity="1">
-  
-</a-text>
-
-
+      <!-- 説明テキスト（日本語対応） -->
+      <a-entity id="infoText"
+                position="0 2 -3"
+                scale="2 2 2"
+                text="value: A区画：木陰が多く、静かな雰囲気; align: center; color: #FFDD00; width: 6;">
+      </a-entity>
     </a-scene>
 
     <script>
@@ -49,12 +42,9 @@
         sky.setAttribute('src', imageName);
 
         const infoText = document.getElementById('infoText');
-        infoText.setAttribute('value', description);
-        infoText.setAttribute('opacity', '1'); // 常に表示
+        infoText.setAttribute('text', `value: ${description}; align: center; color: #FFDD00; width: 6;`);
       }
     </script>
   </body>
 </html>
-
-
 
