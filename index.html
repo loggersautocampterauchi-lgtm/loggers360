@@ -105,10 +105,7 @@
     <a-assets>
       <img id="sky-a" src="./images/a.jpg">
       <img id="sky-b" src="./images/b.jpg">
-      <img id="sky-c" src="./images/a.jpg">
-      <img id="sky-d" src="./images/b.jpg">
-      <img id="sky-e" src="./images/a.jpg">
-      <img id="sky-f" src="./images/b.jpg">
+
     </a-assets>
 
     <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
@@ -141,22 +138,6 @@
         case 'b':
           sky.setAttribute('src', '#sky-b');
           camera.setAttribute('position', '2 1.6 -1');
-          break;
-        case 'c':
-          sky.setAttribute('src', '#sky-c');
-          camera.setAttribute('position', '-1 1.6 2');
-          break;
-        case 'd':
-          sky.setAttribute('src', '#sky-d');
-          camera.setAttribute('position', '1 1.6 1');
-          break;
-        case 'e':
-          sky.setAttribute('src', '#sky-e');
-          camera.setAttribute('position', '-2 1.6 0');
-          break;
-        case 'f':
-          sky.setAttribute('src', '#sky-f');
-          camera.setAttribute('position', '0 2.0 3');
           break;
       }
 
