@@ -1,0 +1,32 @@
+/* 全体のリセットと基本スタイル */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #f0f8ff;
+}
+
+/* ボタンの配置エリア */
+.button-group {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+}
+
+/* ボタンの見た目 */
+.button-group button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #c8e6c9;
+}
+
