@@ -101,22 +101,18 @@
   </div>
 
   <!-- A-Frameシーン -->
-  <a-scene embedded vr-mode-ui="enabled: false" xr-mode-ui="enabled: false">
+  <a-scene>
     <a-assets>
-      <img id="sky-a" src="images/a.jpg">
-      <img id="sky-b" src="images/b.jpg">
-
+      <img id="sky-a" src="images/shade.jpg">
+      <img id="sky-b" src="images/insect.jpg">
+      <img id="sky-c" src="images/star.jpg">
+      <img id="sky-d" src="images/fire.jpg">
+      <img id="sky-e" src="images/autumn.jpg">
+      <img id="sky-f" src="images/view.jpg">
     </a-assets>
 
     <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
-
-    <!-- カメラ設定 -->
-    <a-camera id="camera"
-              look-controls="touchEnabled: true; magicWindowTrackingEnabled: false; pointerLockEnabled: false"
-              wasd-controls="enabled: false"
-              position="0 1.6 0">
-      <a-cursor></a-cursor>
-    </a-camera>
+    <a-entity id="camera" camera look-controls position="0 1.6 0"></a-entity>
   </a-scene>
 
   <!-- JavaScript -->
@@ -139,14 +135,29 @@
           sky.setAttribute('src', '#sky-b');
           camera.setAttribute('position', '2 1.6 -1');
           break;
+        case 'c':
+          sky.setAttribute('src', '#sky-c');
+          camera.setAttribute('position', '-1 1.6 2');
+          break;
+        case 'd':
+          sky.setAttribute('src', '#sky-d');
+          camera.setAttribute('position', '1 1.6 1');
+          break;
+        case 'e':
+          sky.setAttribute('src', '#sky-e');
+          camera.setAttribute('position', '-2 1.6 0');
+          break;
+        case 'f':
+          sky.setAttribute('src', '#sky-f');
+          camera.setAttribute('position', '0 2.0 3');
+          break;
       }
 
+      // 自動でメニューを閉じる（スマホ向け）
       document.getElementById('zone-menu').style.display = 'none';
     }
   </script>
+
 </body>
 </html>
-
-
-
 
