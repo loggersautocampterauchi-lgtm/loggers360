@@ -39,13 +39,25 @@
   </a-text>
 </a-scene>
 
-    <script>
-      function changeSky(imageName) {
-        const sky = document.getElementById('sky');
-        sky.setAttribute('src', imageName);
-      }
-    </script>
+<script>
+  function changeSky(imageName, description) {
+    // 背景画像を切り替え
+    const sky = document.getElementById('sky');
+    sky.setAttribute('src', imageName);
+
+    // 説明テキストを更新
+    const infoText = document.getElementById('infoText');
+    infoText.setAttribute('value', description);
+
+    // アニメーションを再起動（opacityを0→1）
+    infoText.setAttribute('opacity', '0');
+    setTimeout(() => {
+      infoText.setAttribute('animation__fadein', 'property: opacity; to: 1; dur: 800; easing: ease-out');
+    }, 50);
+  }
+</script>
   </body>
 </html>
+
 
 
