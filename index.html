@@ -1,79 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <title>Loggers 360ビュー</title>
+    <meta charset="UTF-8" />
+    <title>キャンプ場アイコン表示</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      .buttons {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 999;
-      }
-      button {
-        margin: 5px;
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      #description {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        padding: 12px 20px;
-        font-size: 18px;
-        border-radius: 8px;
-        z-index: 999;
-        max-width: 80%;
-        text-align: center;
-        line-height: 1.5;
-      }
+      body { margin: 0; }
     </style>
   </head>
   <body>
-    <div class="buttons">
-      <button onclick="changeSky('a.jpg', 'A区画：木陰が多く、静かな雰囲気', 'shade.png')">A区画</button>
-      <button onclick="changeSky('b.jpg', 'B区画：虫が少なく、ファミリー向け', 'mosquito.png')">B区画</button>
-      <button onclick="changeSky('c.jpg', 'C区画：広々とした開放感、夜空がきれい', 'stars.png')">C区画</button>
-    </div>
+    <a-scene background="color: #ECECEC">
+      
+      <!-- カメラとカーソル -->
+      <a-entity camera look-controls>
+        <a-cursor></a-cursor>
+      </a-entity>
 
-    <div id="description">A区画：木陰が多く、静かな雰囲気</div>
-
-    <a-scene>
-      <a-sky id="sky" src="a.jpg" rotation="0 -130 0"></a-sky>
-
-      <!-- アイコン（アニメーション付き） -->
-      <a-image id="icon"
-               src="shade.png"
-               position="0 2 -3"
-               scale="1.5 1.5 1.5"
-               visible="true"
-               animation__fadein="property: opacity; from: 0; to: 1; dur: 800; easing: ease-out"
-               animation__float="property: position; dir: alternate; dur: 2000; easing: ease-in-out; loop: true; to: 0 2.2 -3">
+      <!-- 木陰アイコン -->
+      <a-image 
+        src="shade-icon.png" 
+        position="-2 2 -4" 
+        scale="1.5 1.5 1.5" 
+        transparent="true" 
+        alpha-test="0.5">
       </a-image>
+
+      <!-- 虫除けアイコン -->
+      <a-image 
+        src="mosquito-icon.png" 
+        position="0 2 -4" 
+        scale="1.5 1.5 1.5" 
+        transparent="true" 
+        alpha-test="0.5">
+      </a-image>
+
+      <!-- 星空アイコン -->
+      <a-image 
+        src="stars-icon.png" 
+        position="2 2 -4" 
+        scale="1.5 1.5 1.5" 
+        transparent="true" 
+        alpha-test="0.5">
+      </a-image>
+
     </a-scene>
-
-    <script>
-      function changeSky(imageName, description, iconName) {
-        document.getElementById('sky').setAttribute('src', imageName);
-        document.getElementById('description').textContent = description;
-
-        const icon = document.getElementById('icon');
-        icon.setAttribute('src', iconName);
-        icon.setAttribute('opacity', '0'); // リセット
-        setTimeout(() => {
-          icon.setAttribute('animation__fadein', 'property: opacity; from: 0; to: 1; dur: 800; easing: ease-out');
-        }, 50);
-      }
-    </script>
   </body>
 </html>
 
