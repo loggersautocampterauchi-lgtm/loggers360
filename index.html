@@ -111,6 +111,9 @@
       <img id="sky-f" src="images/b.jpg">
     </a-assets>
 
+    <!-- 視点移動をスワイプ操作に限定 -->
+   <a-entity camera look-controls="touchEnabled: true; magicWindowTrackingEnabled: false;"></a-entity>
+
     <a-sky id="sky" src="#sky-a" rotation="0 -90 0"></a-sky>
     <a-entity id="camera" camera look-controls position="0 1.6 0"></a-entity>
   </a-scene>
@@ -160,6 +163,7 @@
 
 </body>
 </html>
+
 
 
 
