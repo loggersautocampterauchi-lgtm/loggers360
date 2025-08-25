@@ -120,28 +120,65 @@
 
   <!-- JavaScript -->
 <script>
+  // 折りたたみメニューの表示切り替え
+  function toggleMenu() {
+    const menu = document.getElementById('zone-menu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  // 区画切り替え処理
+  function switchScene(zone) {
+    const sky = document.querySelector('#sky');
+    const camera = document.querySelector('#camera');
+
+    switch (zone) {
+      case 'a':
+        sky.setAttribute('src', '#sky-a');
+        camera.setAttribute('position', '0 1.6 0');
+        break;
+      case 'b':
+        sky.setAttribute('src', '#sky-b');
+        camera.setAttribute('position', '2 1.6 -1');
+        break;
+      case 'c':
+        sky.setAttribute('src', '#sky-c');
+        camera.setAttribute('position', '-1 1.6 2');
+        break;
+      case 'd':
+        sky.setAttribute('src', '#sky-d');
+        camera.setAttribute('position', '1 1.6 1');
+        break;
+      case 'e':
+        sky.setAttribute('src', '#sky-e');
+        camera.setAttribute('position', '-2 1.6 0');
+        break;
+      case 'f':
+        sky.setAttribute('src', '#sky-f');
+        camera.setAttribute('position', '0 2.0 3');
+        break;
+    }
+
+    // メニューを自動で閉じる（スマホ向け）
+    document.getElementById('zone-menu').style.display = 'none';
+  }
+
+  // カメラの操作設定（端末ごとに分岐）
   window.addEventListener('DOMContentLoaded', () => {
     const camera = document.getElementById('camera');
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    // 共通設定
+    // スワイプ操作を有効化し、傾き操作とキーボード操作を無効化
     camera.setAttribute('wasd-controls', 'enabled: false');
-
-    // スマホとPCで分岐
     camera.setAttribute('look-controls', {
       touchEnabled: true,
       magicWindowTrackingEnabled: false,
-      pointerLockEnabled: !isMobile
+      pointerLockEnabled: false // PCでもfalseにすることでEsc不要
     });
   });
 </script>
-
-
-
-
-
 </body>
 </html>
+
 
 
 
