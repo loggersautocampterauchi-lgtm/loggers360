@@ -1,0 +1,30 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景マップ画像 -->
+  <image href="campmap.jpeg" x="0" y="0" width="1000" height="700" />
+
+  <!-- 区画ボタン配置（例） -->
+  <a xlink:href="A01.html" target="_blank">
+    <rect x="120" y="160" width="60" height="40" fill="rgba(255,255,255,0.6)" stroke="#333" />
+    <text x="125" y="185" font-size="14" fill="#000">A01</text>
+  </a>
+
+  <a xlink:href="A02.html" target="_blank">
+    <rect x="200" y="160" width="60" height="40" fill="rgba(255,255,255,0.6)" stroke="#333" />
+    <text x="205" y="185" font-size="14" fill="#000">A02</text>
+  </a>
+
+  <a xlink:href="A03.html" target="_blank">
+    <rect x="280" y="160" width="60" height="40" fill="rgba(255,255,255,0.6)" stroke="#333" />
+    <text x="285" y="185" font-size="14" fill="#000">A03</text>
+  </a>
+
+  <!-- A04は欠番なのでスキップ -->
+
+  <a xlink:href="A05.html" target="_blank">
+    <rect x="360" y="160" width="60" height="40" fill="rgba(255,255,255,0.6)" stroke="#333" />
+    <text x="365" y="185" font-size="14" fill="#000">A05</text>
+  </a>
+
+  <!-- 以下、A06〜A19を同様に配置 -->
+</svg>
+
